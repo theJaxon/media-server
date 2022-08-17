@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sonarr
+spec:
+  replicas: 1
+  serviceName: sonarr
+  template:
+    spec:
+      containers:
+      - name: sonarr
+        image: lscr.io/linuxserver/sonarr:latest
+        ports:
+        - name: ui
+          containerPort: 8989
+        volumeMounts:
+        - name: sonarr-storage
+          mountPath: /config
+  volumeClaimTemplates:
+  - metadata:
+      name: sonarr-storage
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      storageClassName: local-path
+      resources:
+        requests:
+          storage: 10Gi
