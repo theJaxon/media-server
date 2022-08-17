@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: jackett
+spec:
+  replicas: 1
+  serviceName: jackett
+  template:
+    spec:
+      containers:
+      - name: jackett
+        image: lscr.io/linuxserver/jackett:latest
+        ports:
+        - name: ui
+          containerPort: 9117
+        volumeMounts:
+        - name: jackett-config-storage
+          mountPath: /config
+        - name: jackett-download-storage
+          mountPath: /downloads
+  volumeClaimTemplates:
+  - metadata:
+      name: jackett-config-storage
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      storageClassName: local-path
+      resources:
+        requests:
+          storage: 5Gi
+  - metadata:
+      name: jackett-download-storage
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      storageClassName: local-path
+      resources:
+        requests:
+          storage: 5Gi
