@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: media-server
+commonLabels:
+  app: qbittorrent
+  project: media-server
+commonAnnotations:
+  website: https://www.qbittorrent.org/
+  Dockerfile: https://github.com/linuxserver/docker-qbittorrent
+resources:
+- ingress.yaml
+- statefulset.yaml
+- service.yaml

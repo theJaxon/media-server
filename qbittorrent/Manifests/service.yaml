@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: qbittorrent
+spec:
+  clusterIP: None
+  ports:
+  - name: ui
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+  - name: tcp-connection
+    port: 6881
+    targetPort: 6881
+    protocol: TCP
+  - name: udp-connection
+    port: 6881
+    targetPort: 6881
+    protocol: UDP
