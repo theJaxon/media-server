@@ -14,11 +14,22 @@ spec:
         - name: ui
           containerPort: 8989
         volumeMounts:
-        - name: sonarr-storage
+        - name: sonarr-config
           mountPath: /config
+        - name: sonarr-downloads
+          mountPath: /downloads
   volumeClaimTemplates:
   - metadata:
-      name: sonarr-storage
+      name: sonarr-config
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      storageClassName: local-path
+      resources:
+        requests:
+          storage: 256Mi
+  - metadata:
+      name: sonarr-downloads
     spec:
       accessModes:
         - ReadWriteOnce
