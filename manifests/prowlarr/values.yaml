@@ -1,0 +1,13 @@
+name: prowlarr
+ui_port: 9696
+
+podAnnotations:
+  Webiste: https://prowlarr.com/
+  Dockerfile: https://github.com/linuxserver/docker-prowlarr
+
+image:
+  tag: develop
+
+volume_defaults: {}
+
+extraVolumes:
