@@ -29,6 +29,9 @@ spec:
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+          - name: {{ .Values.name }}-config
+            mountPath: /config
     
   volumeClaimTemplates:
   - metadata:
