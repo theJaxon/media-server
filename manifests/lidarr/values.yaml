@@ -1,0 +1,13 @@
+name: lidarr
+ui_port: 8686
+
+podAnnotations:
+  Webiste: https://lidarr.audio/
+  Dockerfile: https://github.com/linuxserver/docker-lidarr
+
+image:
+  tag: latest
+
+volume_defaults: {}
+
+extraVolumes:
